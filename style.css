@@ -116,7 +116,7 @@ footer a:visited{
     justify-content: center;
     align-items: center;
     /*background: rgba(0, 0, 0, 0.5) ;*/
-    width: 100vw;
+    /*with:100vw;*/
     height: 100vh;
     z-index: 10;
     transition: all ease-in 90ms;
@@ -138,18 +138,64 @@ footer a:visited{
 .booksContainer{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    padding: 20px;
 }
-.bookCard{
+.coverContainer{
+    width: 150px;
+    max-width: 150px;
+}
+.coverContainer img{
+    width: 100%;
+}
+.bookCard h1{
+    font-weight: bolder;
+}
+.bookPages{
+    font-weight: lighter;
+}
+.bookAuthor{
+    font-style: italic;
+    font-weight: bold;
+}
+.bookCardTop{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.interactions{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.deleteIcon{
+    color: indianred;
+}
+.viewIcon{
+    color: cornflowerblue;
+}
+
+.bookCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     padding: 15px;
     background: white;
     border-radius: 10px;
     width: 300px;
+    height: 400px;
+    max-height: 400px;
+    max-width: 300px;
     -webkit-box-shadow: 0px 4px 17px 1px #D0D0D0;
     box-shadow: 0px 4px 17px 1px #D0D0D0;
+    cursor: pointer;
 }
 
 form{

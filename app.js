@@ -1,6 +1,6 @@
 
 let myLibrary = [];
-let booksContainer = document.querySelector('.booksContainer');
+let booksContainer = document.querySelector(".booksContainer");
 let addBookBtn = document.querySelector(".addBtn");
 let loginBtn = document.querySelector(".loginBtn");
 let addBookFormContainer = document.querySelector(".overlay");
@@ -18,7 +18,7 @@ addBookFormContainer.classList.add("open");
 
 function closeAddBookForm(e){
     if(e.target !== addBookFormContainer){
-        console.log('child');
+        console.log("child");
     }else{
         addBookFormContainer.classList.remove("open");
     }
@@ -70,4 +70,4 @@ this.read = read;
 
 addBookBtn.addEventListener("click", toggleForm);
 addBookFormContainer.addEventListener("click", closeAddBookForm);
-submitBookBtn.addEventListener('click',submitForm(bookTitleInput.value,bookAuthourInput.value,bookPagesInput.value));
+submitBookBtn.addEventListener("click",submitForm(bookTitleInput.value,bookAuthourInput.value,bookPagesInput.value));
