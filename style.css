@@ -115,18 +115,19 @@ footer a:visited{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.5) ;
+    /*background: rgba(0, 0, 0, 0.5) ;*/
     width: 100vw;
-    height: 0vh;
+    height: 100vh;
     z-index: 10;
-    transition: all ease-in 500ms;
+    transition: all ease-in 90ms;
     transform: scale(0);
 }
 
 .open{
 
-    top: 0 !important;
-    height: 100vh !important;
+    /*top: 0 !important;*/
+    /*height: 100vh !important;*/
+    background: rgba(0, 0, 0, 0.5) ;
     transform: scale(1);
 }
 
@@ -146,7 +147,7 @@ form{
     max-width: 300px;
     position: absolute;
     gap: 15px;
-    transition: all ease-in 100ms;
+    transition: all ease-in 400ms;
     transform: scale(0);
 }
 
