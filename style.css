@@ -34,7 +34,7 @@ body{
 header{
     display: flex;
     flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
     position:relative;
     align-items: center;
     flex-wrap: wrap;
@@ -50,7 +50,8 @@ header{
 
 main{
     background: rgb(239,238,241);
-    /*height: 80vh;*/
+    height: 80vh;
+    max-height: 80vh;
     padding: 50px 0;
 
     position: relative;
@@ -105,7 +106,8 @@ footer a:visited{
 
 }
 .overlay{
-    position: relative;
+    position: absolute;
+    /*top: -100vh;*/
     top: 0;
     bottom: 0;
     left: 0;
@@ -113,9 +115,24 @@ footer a:visited{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(119,119,120, 1) ;
+    /*background: rgba(0, 0, 0, 0.5) ;*/
     width: 100vw;
     height: 100vh;
+    z-index: 10;
+    transition: all ease-in 90ms;
+    transform: scale(0);
+}
+
+.open{
+
+    /*top: 0 !important;*/
+    /*height: 100vh !important;*/
+    background: rgba(0, 0, 0, 0.5) ;
+    transform: scale(1);
+}
+
+.main{
+    z-index: -10
 }
 
 form{
@@ -130,11 +147,24 @@ form{
     max-width: 300px;
     position: absolute;
     gap: 15px;
+    transition: all ease-in 400ms;
+    transform: scale(0);
+}
+
+.open form{
+    transform: scale(1);
 }
 
 form h1{
     font-weight: 900;
 }
+
+#id:placeholder-shown:invalid{
+
+    border: 1px solid indianred;
+}
+
+
 .submit{
     border: none;
     border-radius: 10px;
@@ -170,10 +200,6 @@ form input{
 .readContainer input{
     width: 1.3rem;
     font-size: initial;
-}
-
-form input:nth-child(6):checked{
-    background: red;
 }
 
 form input:focus{
