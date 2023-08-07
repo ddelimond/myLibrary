@@ -115,7 +115,7 @@ async function submitForm(){
     let library  = JSON.parse(libraryStr);
 
      booksContainer.innerHTML = library.map((book)=>{
-    return `<div class="bookCard">
+    return `<div class="bookCard" data-id=${book.id}>
             <div class="bookCardTop">
             <div class="coverContainer">
                 <img src=${book.cover} alt=${book.title}>
@@ -140,6 +140,9 @@ async function submitForm(){
 window.addEventListener('DOMContentLoaded',displayLibraryBooks);
 addBookBtn.addEventListener("click", toggleForm);
 addBookFormContainer.addEventListener("click", closeAddBookForm);
+
+// Event listener that wait for when user uploads a file then makes that file a url
+// an assigns the url to the books cover variable
 bookCoverImageInput.onchange = function (e) {
     let tgt = e.target;
     files = tgt.files;

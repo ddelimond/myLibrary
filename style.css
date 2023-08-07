@@ -148,9 +148,11 @@ footer a:visited{
 .coverContainer{
     width: 150px;
     max-width: 150px;
+    height: 216px;
 }
 .coverContainer img{
     width: 100%;
+
 }
 .bookCard h1{
     font-weight: bolder;
