@@ -126,7 +126,7 @@ async function submitForm(){
             <span class="bookPages">Pages: ${book.pages}</span>
             </div>
             <div class="interactions">
-                <div>
+                <div onclick="updateBookReadStatus(e,${book.id})">
                     <i class="fa-regular fa-eye viewIcon"></i>
                 </div>
                 <div onclick="deleteBook(${book.id})">
@@ -146,6 +146,28 @@ function deleteBook (id){
     library = JSON.stringify(library);
     localStorage.setItem("Library", library);
     displayLibraryBooks();
+}
+
+function toggleReadIcon(e){
+    console.log(e)
+}
+
+// finds the index of the book selected based on the books id and modifies the read property to either true or false
+// once status has been updated the new library is saved to local storage and the visible class is placed
+function updateBookReadStatus(e,id){
+    console.log(e)
+    bookId = id;
+    let libraryStr = localStorage.getItem("Library");
+    let library = JSON.parse(libraryStr);
+    let bookIndex = library.findIndex(book=>(book.id === bookId));
+    let book = library[bookIndex];
+
+    book.read?book.read = false:book.read = true;
+
+     library = JSON.stringify(library);
+    localStorage.setItem("Library", library);
+
+    toggleReadIcon(e);
 }
 
 window.addEventListener('DOMContentLoaded',displayLibraryBooks);
