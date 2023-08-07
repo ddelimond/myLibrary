@@ -11,6 +11,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#a0e5ff">
+    <meta name="theme-color" content="#a0e5ff">
     <script src="https://kit.fontawesome.com/3d26510c42.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <title>Library</title>
@@ -22,12 +28,12 @@
         <input type="text" id="title" required placeholder="Title" maxlength="32" name="title">
         <input type="text" id="author" required placeholder="Author" maxlength="40" name="author">
         <input type="number" id="pages" required placeholder="Pages" name="pages">
-        <input type="file" id="cover" required placeholder="Cover" name="cover">
+        <input type="file" id="cover" placeholder="Cover" name="cover">
         <div class="readContainer">
             <label for="read">Have you read this?</label>
-            <input type="checkbox" id="read" required name="read" value="true">
+            <input type="checkbox" id="read" name="read" value="true">
         </div>
-            <button type="submit" class="submit">Submit</button>
+            <button type="button" class="submit">Submit</button>
     </form>
 </section>
 <section class="main">
@@ -38,26 +44,25 @@
 <main>
     <button type="button" class="addBtn"> + Add book</button>
     <section class="booksContainer">
-        <div class="bookCard">
-            <div class="bookCardTop">
-            <div class="coverContainer">
-                <img src="./img/sampleCover.jpg" alt="book title cover">
-            </div>
-            <h1>Discipline is Destiny</h1>
-            <span class="bookAuthor">Ryan Holiday</span>
-            <span class="bookPages">Pages: 352</span>
-            </div>
-            <div class="interactions">
-                <div>
-                    <i class="fa-regular fa-eye viewIcon"></i>
-                </div>
-                <div>
-                    <i class="fa-solid fa-trash-can deleteIcon"></i>
-                </div>
-            </div>
+<!--        <div class="bookCard">-->
+<!--            <div class="bookCardTop">-->
+<!--            <div class="coverContainer">-->
+<!--                <img src="./img/sampleCover.jpg" alt="book title cover">-->
+<!--            </div>-->
+<!--            <h1>Discipline is Destiny</h1>-->
+<!--            <span class="bookAuthor">Ryan Holiday</span>-->
+<!--            <span class="bookPages">Pages: 352</span>-->
+<!--            </div>-->
+<!--            <div class="interactions">-->
+<!--                <div>-->
+<!--                    <i class="fa-regular fa-eye viewIcon"></i>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <i class="fa-solid fa-trash-can deleteIcon"></i>-->
+<!--                </div>-->
+<!--            </div>-->
 
-        </div>
-
+<!--        </div>-->
     </section>
 </main>
 <footer>

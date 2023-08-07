@@ -50,10 +50,12 @@ header{
 
 main{
     background: rgb(239,238,241);
-    height: 80vh;
+    /*height: 80vh;*/
     min-height: 80vh;
     padding: 50px 0;
-
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
     position: relative;
 }
 
@@ -138,6 +140,9 @@ footer a:visited{
 .booksContainer{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
     padding: 20px;
 }
 .coverContainer{
@@ -271,5 +276,14 @@ form input{
 
 form input:focus{
     outline: none;
+}
+
+
+@media screen and (max-width: 590px){
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 }
 
