@@ -39,7 +39,7 @@ if(!addBookFormContainer.classList.contains("open")){
 
 
 //   Book object
-function Book(title, author,pages,cover,read=false){
+function Book(title, author,pages,cover,read){
     this.id = Date.now()* Math.floor(Math.random()*100);
 this.title = title;
 this.author = author;
@@ -116,6 +116,7 @@ async function submitForm(){
 
      booksContainer.innerHTML = library.map((book)=>{
     return `<div class="bookCard" data-id=${book.id}>
+            <i class="fa-regular fa-circle-check readIcon"></i>
             <div class="bookCardTop">
             <div class="coverContainer">
                 <img src=${book.cover} alt=${book.title}>
@@ -128,7 +129,7 @@ async function submitForm(){
                 <div>
                     <i class="fa-regular fa-eye viewIcon"></i>
                 </div>
-                <div>
+                <div onclick="deleteBook(${book.id})">
                     <i class="fa-solid fa-trash-can deleteIcon"></i>
                 </div>
             </div>
@@ -136,6 +137,16 @@ async function submitForm(){
     }).join("");
  }
 
+// function to delete book from library then re display remaining books
+function deleteBook (id){
+    let bookId = id;
+    let libraryStr = localStorage.getItem("Library");
+    let library = JSON.parse(libraryStr);
+    library = library.filter(book=>(book.id !== bookId));
+    library = JSON.stringify(library);
+    localStorage.setItem("Library", library);
+    displayLibraryBooks();
+}
 
 window.addEventListener('DOMContentLoaded',displayLibraryBooks);
 addBookBtn.addEventListener("click", toggleForm);
@@ -157,6 +168,7 @@ bookCoverImageInput.onchange = function (e) {
     }
 }
 submitBookBtn.addEventListener("click",submitForm);
+
 
 
 
