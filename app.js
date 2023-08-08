@@ -89,8 +89,13 @@ async function submitForm(){
         if(coverImg === ""){
             coverImg = "N/A";
         }
+console.log(read)
+        if(read === "on"|| read ===""){
+            read = false;
+        }else{
+            read = true;
+        }
 
-        console.log("cover: "+coverImg)
     //   creation of new book using arguements
     let book  = await createBook(title,author,pages,coverImg,read);
 
@@ -115,7 +120,29 @@ async function submitForm(){
     let library  = JSON.parse(libraryStr);
 
      booksContainer.innerHTML = library.map((book)=>{
-    return `<div class="bookCard" data-id=${book.id}>
+
+         if(book.read){
+           return   `<div class="bookCard" data-id=${book.id}>
+                 <i class="fa-regular fa-circle-check readIcon visible"></i>
+                 <div class="bookCardTop">
+                     <div class="coverContainer">
+                         <img src=${book.cover} alt=${book.title}>
+                     </div>
+                     <h1>${book.title}</h1>
+                     <span class="bookAuthor">${book.author}</span>
+                     <span class="bookPages">Pages: ${book.pages}</span>
+                 </div>
+                 <div class="interactions">
+                     <div onclick="updateBookReadStatus(event,${book.id})">
+                         <i class=" viewIcon">Read?</i>
+                     </div>
+                     <div onclick="deleteBook(${book.id})">
+                         <i class="fa-solid fa-trash-can deleteIcon"></i>
+                     </div>
+                 </div>
+             </div>`
+         }else{
+           return  `<div class="bookCard" data-id=${book.id}>
             <i class="fa-regular fa-circle-check readIcon"></i>
             <div class="bookCardTop">
             <div class="coverContainer">
@@ -126,14 +153,16 @@ async function submitForm(){
             <span class="bookPages">Pages: ${book.pages}</span>
             </div>
             <div class="interactions">
-                <div onclick="updateBookReadStatus(e,${book.id})">
-                    <i class="fa-regular fa-eye viewIcon"></i>
+                <div onclick="updateBookReadStatus(event,${book.id})">
+                    <i class=" viewIcon">Read?</i>
                 </div>
                 <div onclick="deleteBook(${book.id})">
                     <i class="fa-solid fa-trash-can deleteIcon"></i>
                 </div>
             </div>
         </div>`
+         }
+
     }).join("");
  }
 
@@ -148,26 +177,46 @@ function deleteBook (id){
     displayLibraryBooks();
 }
 
+
+// get the bookId from bookcard and returns the book that has the same id from the library in local storage
+// if the read status is true a green checkmark is display, if the book has not read the check mark is not visible
 function toggleReadIcon(e){
-    console.log(e)
+    let id = parseInt(e.target.parentElement.parentElement.parentElement.dataset.id,10);
+    let readIcon = e.target.parentElement.parentElement.parentElement.querySelector(".readIcon");
+    let libraryStr = localStorage.getItem("Library");
+    let library = JSON.parse(libraryStr);
+    let book = library.find(book => book.id === id);
+    console.log(book.read)
+    if(book.read){
+        readIcon.classList.add("visible")
+    }
+    else{
+        readIcon.classList.remove("visible")
+    }
 }
 
 // finds the index of the book selected based on the books id and modifies the read property to either true or false
 // once status has been updated the new library is saved to local storage and the visible class is placed
-function updateBookReadStatus(e,id){
-    console.log(e)
-    bookId = id;
+async function updateBookReadStatus (e,id){
+    let bookId = id;
     let libraryStr = localStorage.getItem("Library");
-    let library = JSON.parse(libraryStr);
-    let bookIndex = library.findIndex(book=>(book.id === bookId));
+    let library = JSON.parse( libraryStr);
+    let bookIndex = library.findIndex(book => book.id === bookId);
+    console.log(bookIndex)
+
     let book = library[bookIndex];
 
-    book.read?book.read = false:book.read = true;
+    book.read = !book.read;
 
-     library = JSON.stringify(library);
-    localStorage.setItem("Library", library);
+    console.log(book.read)
+    console.log(book)
+    library.splice(bookIndex,1,book);
+    console.log(library)
 
-    toggleReadIcon(e);
+     let updatedLibrary = JSON.stringify(library);
+    localStorage.setItem("Library", updatedLibrary);
+
+   await toggleReadIcon(e);
 }
 
 window.addEventListener('DOMContentLoaded',displayLibraryBooks);

@@ -152,7 +152,7 @@ footer a:visited{
 }
 .coverContainer img{
     width: 100%;
-
+    max-height: 212px;
 }
 .bookCard h1{
     font-weight: bolder;
@@ -193,6 +193,10 @@ footer a:visited{
     top: 10px;
     right: 20px;
     visibility: hidden;
+}
+
+.bookCard .visible{
+    visibility: visible !important;
 }
 
 .viewIcon{
