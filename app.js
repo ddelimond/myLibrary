@@ -1,5 +1,4 @@
 // Variables
-
 let booksContainer = document.querySelector(".booksContainer");
 let addBookBtn = document.querySelector(".addBtn");
 let loginBtn = document.querySelector(".loginBtn");
@@ -11,6 +10,13 @@ let bookCoverImageInput = document.querySelector("#cover");
 let bookReadCheckbox = document.querySelector("#read");
 let submitBookBtn = document.querySelector(".submit");
 let cover;
+
+if(localStorage.getItem("Library") ==="null"){
+    localStorage.setItem("Library", JSON.stringify(library));
+}
+
+
+
 
 //     adds the open class to the form element
 function displayAddBookForm(){
@@ -81,6 +87,8 @@ async function submitForm(){
       let pages =  bookPagesInput.value;
       let coverImg = cover;
       let read = bookReadCheckbox.value;
+
+      console.log(read)
 
     if(bookTitleInput.value===""||bookAuthourInput.value===""||bookPagesInput.value===""){
         
@@ -186,7 +194,6 @@ function toggleReadIcon(e){
     let libraryStr = localStorage.getItem("Library");
     let library = JSON.parse(libraryStr);
     let book = library.find(book => book.id === id);
-    console.log(book.read)
     if(book.read){
         readIcon.classList.add("visible")
     }
@@ -202,16 +209,11 @@ async function updateBookReadStatus (e,id){
     let libraryStr = localStorage.getItem("Library");
     let library = JSON.parse( libraryStr);
     let bookIndex = library.findIndex(book => book.id === bookId);
-    console.log(bookIndex)
-
     let book = library[bookIndex];
 
     book.read = !book.read;
 
-    console.log(book.read)
-    console.log(book)
     library.splice(bookIndex,1,book);
-    console.log(library)
 
      let updatedLibrary = JSON.stringify(library);
     localStorage.setItem("Library", updatedLibrary);
