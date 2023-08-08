@@ -11,7 +11,7 @@ let bookReadCheckbox = document.querySelector("#read");
 let submitBookBtn = document.querySelector(".submit");
 let cover;
 
-if(localStorage.getItem("Library") ==="null"){
+if(localStorage.getItem("Library") ===null){
     localStorage.setItem("Library", JSON.stringify(library));
 }
 
@@ -62,7 +62,7 @@ this.read = read;
 
 // takes the created book and adds it to the users library
  async function addBookToLibrary (book){
-     let myLibrary ;
+     let myLibrary;
     // if Library is not found in local storage it is created, but if it is
     // found in local storage the value is taken and made an array so that the new
     // book can be added to it, once added, the new Library is added to local storage.
@@ -86,22 +86,16 @@ async function submitForm(){
       let author = bookAuthourInput.value;
       let pages =  bookPagesInput.value;
       let coverImg = cover;
-      let read = bookReadCheckbox.value;
-
-      console.log(read)
+      let read ;
 
     if(bookTitleInput.value===""||bookAuthourInput.value===""||bookPagesInput.value===""){
         
     }else{
-        // create default for empty cover and read
-        if(coverImg === ""){
-            coverImg = "N/A";
-        }
-console.log(read)
-        if(read === "on"|| read ===""){
-            read = false;
-        }else{
+
+        if(bookReadCheckbox.checked){
             read = true;
+        }else{
+            read = false;
         }
 
     //   creation of new book using arguements
@@ -118,14 +112,19 @@ console.log(read)
     bookReadCheckbox.value = "";
     }
     //  displays the newly added book on the DOM
-    await displayLibraryBooks();
+    displayLibraryBooks();
  }
 
  // gets stored library from local storage and loops through it to display each book on the DOM
  function displayLibraryBooks(){
 
-    let libraryStr = localStorage.getItem("Library");
-    let library  = JSON.parse(libraryStr);
+         let libraryStr = localStorage.getItem("Library");
+
+         if(libraryStr===null){
+             let library = library;
+         }else{
+             library  = JSON.parse(libraryStr);
+         }
 
      booksContainer.innerHTML = library.map((book)=>{
 
@@ -170,7 +169,6 @@ console.log(read)
             </div>
         </div>`
          }
-
     }).join("");
  }
 
