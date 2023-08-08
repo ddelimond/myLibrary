@@ -50,10 +50,12 @@ header{
 
 main{
     background: rgb(239,238,241);
-    height: 80vh;
+    /*height: 80vh;*/
     min-height: 80vh;
     padding: 50px 0;
-
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
     position: relative;
 }
 
@@ -138,14 +140,19 @@ footer a:visited{
 .booksContainer{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
     padding: 20px;
 }
 .coverContainer{
     width: 150px;
     max-width: 150px;
+    height: 216px;
 }
 .coverContainer img{
     width: 100%;
+    max-height: 212px;
 }
 .bookCard h1{
     font-weight: bolder;
@@ -178,16 +185,32 @@ footer a:visited{
 .deleteIcon{
     color: indianred;
 }
+
+.readIcon{
+    color: RGB(92, 184, 92);
+    font-size: 1.5rem;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    visibility: hidden;
+}
+
+.bookCard .visible{
+    visibility: visible !important;
+}
+
 .viewIcon{
     color: cornflowerblue;
 }
 
 .bookCard{
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
+    margin: 0 auto;
     gap: 30px;
-    padding: 15px;
+    padding: 30px 15px 15px 15px;
     background: white;
     border-radius: 10px;
     width: 300px;
@@ -271,5 +294,14 @@ form input{
 
 form input:focus{
     outline: none;
+}
+
+
+@media screen and (max-width: 590px){
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 }
 
