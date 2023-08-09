@@ -4,7 +4,7 @@
 ![Screen Shot 2023-08-07 at 10 56 03 PM (3)](https://github.com/ddelimond/myLibrary/assets/59320790/9bfedde7-77ad-4329-b2d5-391d54438aeb)
 
 <h1>Link</h1>
-<a href="https://ddelimond.github.io/Xploit_Games_Dashboard/">Visit Dashboard Here!</a>
+<a href="https://ddelimond.github.io/myLibrary/">Interact with the Application Here!</a>
 
 <h1>Features</h1>
 This site allows readers to keep track of the books that they have read/ would like to read. 
